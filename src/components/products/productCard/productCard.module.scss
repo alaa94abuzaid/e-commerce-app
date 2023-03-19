@@ -5,10 +5,10 @@
 }
 
 .name {
-  text-overflow: ellipsis;
   max-width: 70%;
-  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .contentWrapper {

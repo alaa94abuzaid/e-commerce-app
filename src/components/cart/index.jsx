@@ -13,9 +13,11 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
 
+import { useProductsContext } from "../../hooks";
 import { RemoveProduct } from "./RemoveProduct";
-import { useProductsContext } from "./../../hooks";
 import styles from "./cart.module.scss";
+
+const columns = ["Item", "Price", "Quantity", "Total", "Remove"];
 
 export const CartTable = () => {
   const { cartProducts, setCartProducts } = useProductsContext();
@@ -31,9 +33,7 @@ export const CartTable = () => {
   };
 
   const handleChangeQuantity = (isAdd, product) => {
-    const index = cartProducts.findIndex(
-      (ele) => ele.id === product.id
-    );
+    const index = cartProducts.findIndex((ele) => ele.id === product.id);
     cartProducts[index] = {
       ...cartProducts[index],
       quantity: isAdd ? product.quantity + 1 : product.quantity - 1,
@@ -43,8 +43,8 @@ export const CartTable = () => {
   };
 
   useEffect(() => {
-    setPaginatedProducts(cartProducts.slice(skip, skip + 6))
-  }, [cartProducts]);
+    setPaginatedProducts(cartProducts.slice(skip, skip + 6));
+  }, [cartProducts, skip]);
 
   return (
     <div>
@@ -54,11 +54,9 @@ export const CartTable = () => {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell align="center" flex="1"> Item</TableCell>
-                  <TableCell align="right">Price</TableCell>
-                  <TableCell align="center">Quantity</TableCell>
-                  <TableCell align="right">Total</TableCell>
-                  <TableCell align="center">Remove</TableCell>
+                  {columns.map((col) => (
+                    <TableCell align="center"> {col}</TableCell>
+                  ))}
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -69,12 +67,12 @@ export const CartTable = () => {
                   >
                     <TableCell component="th" scope="row">
                       <div className={styles.itemWrapper}>
-                        <img src={product.img} />
+                        <img alt={"Product"} src={product.img} />
 
                         {product.name}
                       </div>
                     </TableCell>
-                    <TableCell align="right">{`${product.price}$`}</TableCell>
+                    <TableCell align="center">{`${product.price}$`}</TableCell>
                     <TableCell align="right">
                       <div className={styles.quantityWrapper}>
                         <Fab
@@ -99,8 +97,9 @@ export const CartTable = () => {
                         </Fab>
                       </div>
                     </TableCell>
-                    <TableCell align="right">{`${product.price *
-                      product.quantity}$`}</TableCell>
+                    <TableCell align="center">{`${
+                      product.price * product.quantity
+                    }$`}</TableCell>
                     <TableCell align="center">
                       <RemoveProduct
                         id={product.id}

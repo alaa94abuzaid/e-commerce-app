@@ -7,16 +7,13 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Button from "@mui/material/Button";
-import styles from "./productCard.module.scss";
+
 import { useProductsContext } from "../../../hooks";
+import styles from "./productCard.module.scss";
 
 export const ProductCard = ({ id, name, price, img }) => {
-  const {
-    cartProducts,
-    setCartProducts,
-    favProducts,
-    setFavProducts,
-  } = useProductsContext();
+  const { cartProducts, setCartProducts, favProducts, setFavProducts } =
+    useProductsContext();
   const [isAdded, setIsAdded] = useState(
     !!cartProducts.find((element) => element.id === id)
   );
@@ -35,20 +32,30 @@ export const ProductCard = ({ id, name, price, img }) => {
   const handleAddToFav = () => {
     if (isFav) {
       const index = favProducts.findIndex((ele) => ele === id);
-      favProducts.splice(index, 1)
-      setFavProducts([...favProducts])
+      favProducts.splice(index, 1);
+      setFavProducts([...favProducts]);
     } else {
       setFavProducts([...favProducts, id]);
     }
     setIsFav(!isFav);
   };
-  
+
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardMedia component="img" height="194" image={img} alt="Paella dish" />
+      <CardMedia
+        alt={name}
+        component="img"
+        height="194"
+        image={img}
+        sx={{ objectFit: "fill" }}
+      />
       <CardContent className={styles.contentWrapper}>
         <div className={styles.cardInfo}>
-          <Typography className={styles.name} variant="body2" color="text.secondary">
+          <Typography
+            className={styles.name}
+            variant="body2"
+            color="text.secondary"
+          >
             {name}
           </Typography>
           <Typography variant="body2" color="text.secondary">

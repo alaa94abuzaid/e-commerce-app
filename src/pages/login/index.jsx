@@ -13,7 +13,7 @@ export const Login = () => {
   const { setUser } = useSessionContext();
 
   const [username, setUsername] = useState(undefined);
-  const [password, setPasword] = useState(undefined);
+  const [password, setPassword] = useState(undefined);
   const [error, setError] = useState(undefined);
 
   const handleLogin = () => {
@@ -47,8 +47,8 @@ export const Login = () => {
         variant="outlined"
         value={password}
         onChange={(e) => {
-          setError(undefined)
-          setPasword(e.target.value)
+          setError(undefined);
+          setPassword(e.target.value);
         }}
       />
       <Button size="large" variant="outlined" onClick={handleLogin}>

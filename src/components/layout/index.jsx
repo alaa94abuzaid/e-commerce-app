@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import * as React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { styled, useTheme } from "@mui/material/styles";
@@ -6,7 +7,6 @@ import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
@@ -104,7 +104,7 @@ export const Layout = () => {
   };
 
   const handleNavigation = (index) => {
-    setOpen(false)
+    setOpen(false);
 
     if (index) {
       navigate("/cart");
@@ -119,7 +119,13 @@ export const Layout = () => {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <AppBar position="fixed" open={open} className={open ? styles.appBar : ''}>
+      <AppBar
+        position="fixed"
+        open={open}
+        className={classNames({
+          [styles.appBar]: open,
+        })}
+      >
         <Toolbar
           sx={{ flexDirection: "row-reverse", justifyContent: "space-between" }}
         >
@@ -150,7 +156,13 @@ export const Layout = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer className={open ? styles.drawer : ''} variant="permanent" open={open}>
+      <Drawer
+        className={classNames({
+          [styles.drawer]: open,
+        })}
+        variant="permanent"
+        open={open}
+      >
         <DrawerHeader sx={{ justifyContent: "space-between" }}>
           <Typography variant="h4">{user}</Typography>
           <IconButton onClick={handleDrawerClose}>

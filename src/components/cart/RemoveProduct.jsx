@@ -3,6 +3,7 @@ import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+
 import { useProductsContext } from "../../hooks";
 
 export const RemoveProduct = ({ quantity, name, id }) => {
@@ -22,9 +23,9 @@ export const RemoveProduct = ({ quantity, name, id }) => {
 
   const handleRemoveProduct = () => {
     const index = cartProducts.findIndex((ele) => ele.id === id);
-    cartProducts.splice(index, 1)
-    setCartProducts([...cartProducts])
-  }
+    cartProducts.splice(index, 1);
+    setCartProducts([...cartProducts]);
+  };
 
   return (
     <div>
@@ -44,12 +45,8 @@ export const RemoveProduct = ({ quantity, name, id }) => {
         <Typography sx={{ p: 2 }}>
           {`Are you sure you want to remove ${quantity} quantities of ${name} ?`}{" "}
         </Typography>
-        <Button onClick={handleRemoveProduct}>
-          Yes
-        </Button>
-        <Button onClick={handleClose}>
-          No
-        </Button>
+        <Button onClick={handleRemoveProduct}>Yes</Button>
+        <Button onClick={handleClose}>No</Button>
       </Popover>
     </div>
   );

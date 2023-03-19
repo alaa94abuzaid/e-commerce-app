@@ -5,15 +5,15 @@
   position: absolute;
   top: 45vh;
   transform: translate(-50%, -50%);
-  width: 50vw;
+  width: 30vw;
 }
 
 .errorWrapper {
   height: 10px;
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 481px) {
   .loginWrapper {
-    width: 30vw;
+    width: 50vw;
   }
 }

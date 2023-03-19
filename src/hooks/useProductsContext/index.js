@@ -1,5 +1,5 @@
-import React from 'react'
+import React from "react";
 
-import { ProductsContext } from '../../components'
+import { ProductsContext } from "../../components";
 
-export const useProductsContext = () => React.useContext(ProductsContext)
+export const useProductsContext = () => React.useContext(ProductsContext);
