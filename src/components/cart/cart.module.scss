@@ -1,0 +1,27 @@
+.itemWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.itemWrapper img {
+  height: 50px;
+  width: 50px;
+}
+
+.fab {
+  height: 30px;
+  width: 30px;
+}
+
+.quantityWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.quantity {
+  border-radius: 4px;
+  border: 2px solid lightskyblue;
+  padding: 5px;
+}

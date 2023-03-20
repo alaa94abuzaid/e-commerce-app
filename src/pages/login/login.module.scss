@@ -1,0 +1,19 @@
+.loginWrapper {
+  display: grid;
+  gap: 30px;
+  left: 50vw;
+  position: absolute;
+  top: 45vh;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+}
+
+.errorWrapper {
+  height: 10px;
+}
+
+@media (min-width: 1024px) {
+  .loginWrapper {
+    width: 30vw;
+  }
+}

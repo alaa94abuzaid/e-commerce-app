@@ -1,24 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useCallback, useEffect, useState } from "react";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+import axios from "axios";
+
+import { ProductsProvider } from "./components/providers/ProductsProvider";
+import { Cart, Login, Home } from "./pages";
+import { SessionProvider } from "./components/providers/SessionProvider";
 
 function App() {
+  const [products, setProducts] = useState([]);
+  const [cartProducts, setCartProducts] = useState([]);
+  const [favProducts, setFavProducts] = useState([]);
+  const [user, setUser] = useState(undefined);
+
+  const fetchProducts = useCallback(async () => {
+    try {
+      const { data } = await axios.get(
+        `https://dummyjson.com/products`
+      );
+      setProducts(data.products);
+    } catch (error) {
+      throw error;
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <SessionProvider sessionContext={{ setUser, user }}>
+        <ProductsProvider
+          productsContext={{
+            cartProducts,
+            favProducts,
+            products,
+            setCartProducts,
+            setFavProducts,
+            setProducts,
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <BrowserRouter>
+            <Routes>
+              <Route
+                path="/"
+                element={user ? <Home /> : <Navigate replace to={"/login"} />}
+              />
+              <Route path="login" element={<Login />} />
+              <Route
+                path="cart"
+                element={user ? <Cart /> : <Navigate replace to={"/login"} />}
+              />
+            </Routes>
+          </BrowserRouter>
+        </ProductsProvider>
+      </SessionProvider>
+    </>
   );
 }
 

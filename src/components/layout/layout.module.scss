@@ -1,0 +1,37 @@
+.iconWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.iconWrapper svg {
+    height: 30px;
+    width: 30px;
+}
+
+.favIconWrapper {
+  margin-right: 20px;
+  position: relative;
+}
+
+.favIconWrapper svg {
+  height: 30px;
+  width: 30px;
+}
+
+.favCount {
+  bottom: 11px;
+  font-size: 10px;
+  font-weight: 500;
+  left: 11px;
+  position: absolute;
+}
+
+@media (max-width: 481px) {
+  .drawer > div {
+    width: 100vw !important;
+  }
+
+  .appBar {
+    display: none !important;
+  }
+}

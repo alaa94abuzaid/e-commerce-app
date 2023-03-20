@@ -1,0 +1,24 @@
+.cardInfo {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.name {
+  text-overflow: ellipsis;
+  max-width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.contentWrapper button {
+  align-self: flex-end;
+  margin-top: 15px;
+  text-transform: none;
+  width: 50%;
+}
